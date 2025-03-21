@@ -13,8 +13,13 @@ def res = 24
 def statuette_dl = "https://github.com/JansenSmith/StatuetteDrainage/releases/download/0.1.0/african.woman.part.4.stl"
 
 //File foo = DownloadManager.download("0.1.0", statuette_dl, (long)16, "~/bin", "african.woman.part.4.stl", "african.woman.part.4.stl")
+// Load an STL file from a git repo
+// Loading a local file also works here
+File foo = ScriptingEngine.fileFromGit(
+	"https://github.com/JansenSmith/StatuetteDrainage.git",
+	"african.woman.part.4.stl");
 // Load the STL from the disk and cache it in memory
-//CSG statuette  = Vitamins.get(foo);
+CSG statuette  = Vitamins.get(foo);
 
 //create a rounded cube
 base = new RoundedCube(	105,// X dimention
@@ -113,8 +118,8 @@ if (base) {
 				})
 }
 
-return base.toZMin()
-//return statuette
+//return base.toZMin()
+return statuette
 //return [base, drop]
 //return [drop.union(ramp)]
 //return [base, statue_cutout_back.setIsWireFrame(true)]
